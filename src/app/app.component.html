@@ -1,11 +1,9 @@
 <div>
   <app-header></app-header>
-  <app-new-card (addStationEvent)="addStation($event)"></app-new-card>
+  <app-new-card></app-new-card>
 
-  <div *ngFor="let station of myStations; trackBy: trackByStationId">
-    <app-station-card [station]="station" (removeStationEvent)="removeStation(station.id)"
-      (transportTypeChanged)="onTransportTypeChanged({ id: station.id, transportType: $event.transportType })"
-      (nameFilterChanged)="onNameFilterChanged({ id: station.id, nameFilter: $event.nameFilter })">
+  <div *ngFor="let station of sharedService.stations; trackBy: trackByStationId">
+    <app-station-card [station]="station">
     </app-station-card>
   </div>
 </div>

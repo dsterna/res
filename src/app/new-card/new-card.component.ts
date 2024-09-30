@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import {
@@ -10,6 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { environment } from '../../enviroments/enviroment';
 import { Station } from '../models/models';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-new-card',
@@ -21,7 +22,7 @@ import { Station } from '../models/models';
 export class NewCardComponent implements OnInit {
   private searchTerms = new Subject<string>();
   results: any[] = [];
-  @Output() addStationEvent = new EventEmitter<Station>();
+  private service = inject(SharedService);
 
   constructor(private http: HttpClient) {}
 
@@ -49,7 +50,7 @@ export class NewCardComponent implements OnInit {
   }
 
   onAddStation(siteId: string, name: string) {
-    this.addStationEvent.emit({
+    this.service.addStation({
       id: siteId,
       name,
       selectedTransportType: '',

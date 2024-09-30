@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Station } from '../models/models';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-station-card',
@@ -12,27 +13,25 @@ import { Station } from '../models/models';
 })
 export class StationCardComponent {
   @Input() station!: Station;
-  @Output() removeStationEvent = new EventEmitter<string>();
-  @Output() transportTypeChanged = new EventEmitter<{
-    id: string;
-    transportType: string;
-  }>();
-  @Output() nameFilterChanged = new EventEmitter<{
-    id: string;
-    nameFilter: string;
-  }>();
+  private sharedService = inject(SharedService);
 
   onRemoveStation() {
-    this.removeStationEvent.emit(this.station.id); // Emit the station ID for removal
+    this.sharedService.removeStation(this.station.id); // Emit the station ID for removal
   }
 
   onTransportTypeChange(event: Event) {
     const transportType = (event.target as HTMLSelectElement).value;
-    this.transportTypeChanged.emit({ id: this.station.id, transportType }); // Emit the station ID with transport type
+    this.sharedService.onTransportTypeChanged({
+      id: this.station.id,
+      transportType,
+    });
   }
 
   onNameFilterChange(str: string) {
-    this.nameFilterChanged.emit({ id: this.station.id, nameFilter: str }); // Emit the station ID with name filter
+    this.sharedService.onNameFilterChanged({
+      id: this.station.id,
+      nameFilter: str,
+    });
   }
 
   getStatusEmoji(status: string): string {
