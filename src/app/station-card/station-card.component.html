@@ -1,0 +1,60 @@
+<div class="my-card">
+  <h3 class="flex-between">
+    Avgångar från {{ station.name }}
+    <button (click)="onRemoveStation()">Ta bort</button>
+  </h3>
+  <div class="filter-wrapper">
+    <div>
+      <label>Filtrera</label>
+      <input type="text" placeholder="Filtrera destination..." [(ngModel)]="station.nameFilter"
+        (ngModelChange)="onNameFilterChange($event)">
+    </div>
+    <div>
+      <label for="selectedTransportType">Färdmedel</label>
+      <select (change)="onTransportTypeChange($event)" [value]="station.selectedTransportType">
+        <option value="">--</option>
+        <option value="BUS">Buss {{getTransportEmoji("BUS")}}</option>
+        <option value="TRAM">Spårvagn {{getTransportEmoji("TRAM")}}</option>
+        <option value="METRO">Tunnelbana {{getTransportEmoji("METRO")}}</option>
+        <option value="TRAIN">Pendeltåg {{getTransportEmoji("TRAIN")}}</option>
+        <option value="FERRY">Färja (typ waxholmsbåt) {{getTransportEmoji("FERRY")}}</option>
+        <option value="SHIP">SL-båt {{getTransportEmoji("SHIP")}}</option>
+        <option value="TAXI">Taxi (?) {{getTransportEmoji("TAXI")}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Destination</th>
+          <th>Riktning</th>
+          <th>Status</th>
+          <th>Avgår</th>
+          <th>Klockslag</th>
+          <th>Linje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let departure of station.stationData.departures">
+          <td data-label="Destination">{{ departure.destination }}</td>
+          <td data-label="Riktning">{{ departure.direction }}</td>
+          <td data-label="Status">
+            <div class="status-tooltip">
+              <span class="emoji">{{ getStatusEmoji(departure.state) }}</span>
+              <span class="tooltip-text">{{ departure.state }}</span>
+            </div>
+          </td>
+          <td data-label="Avgår">{{ departure.display }}</td>
+          <td data-label="Planerad tid">{{ departure.scheduled | date:'shortTime' : 'sv' }}</td>
+          <td data-label="Linje">
+            <div class="flex-align">
+              <span>{{ departure.line.designation }}</span>
+              <span class="transport-emoji">{{ getTransportEmoji(departure.line.transport_mode) }}</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

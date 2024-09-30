@@ -1,0 +1,10 @@
+<div>
+    <label for="stationSearch" class="bold-label">Lägg till station</label>
+    <input type="text" id="stationSearch" (keyup)="onSearch($event)" placeholder="Sök...">
+</div>
+<ul>
+    <li *ngFor="let item of results">
+        {{ item.Name }}
+        <button (click)="onAddStation(item.SiteId, item.Name)">Lägg till ➕</button>
+    </li>
+</ul>

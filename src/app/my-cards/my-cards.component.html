@@ -1,0 +1,6 @@
+<div *ngFor="let station of stationData">
+    <app-station-card [station]="station" [departures]="departures"
+        (removeStationEvent)="removeStationEvent.emit($event)"
+        (transportTypeChanged)="transportTypeChanged.emit($event)" (nameFilterChanged)="nameFilterChanged.emit($event)">
+    </app-station-card>
+</div>
