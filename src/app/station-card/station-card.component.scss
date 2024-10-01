@@ -133,6 +133,10 @@
   }
   
   @media (max-width: 600px) {
+
+    .filter-wrapper{
+      gap: 10%;
+    }
   
     table,
     thead,
@@ -142,6 +146,7 @@
     tr {
       display: block;
       width: 100%;
+      border: none;
     }
   
     thead {

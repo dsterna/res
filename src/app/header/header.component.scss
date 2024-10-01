@@ -1,7 +1,12 @@
 .wrapper {
     display: flex;
-    justify-content: center
+    justify-content: center;
 }
+a.inner {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit the color from the parent elements */
+    cursor: pointer; /* Show pointer on hover */
+  }
 
 .inner {
     display: flex;
@@ -11,7 +16,7 @@
 .logo {
     display: flex;
     justify-content: center;
-    font-size: 4rem;    
+    font-size: 4rem;
     line-height: 1;
 }
 

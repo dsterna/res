@@ -10,8 +10,9 @@
         (ngModelChange)="onNameFilterChange($event)">
     </div>
     <div>
-      <label for="selectedTransportType">Färdmedel</label>
-      <select (change)="onTransportTypeChange($event)" [value]="station.selectedTransportType">
+      <label for="selectedTransportType + {{station.id}}">Färdmedel</label>
+      <select id="selectedTransportType + {{station.id}}" (change)="onTransportTypeChange($event)"
+        [value]="station.selectedTransportType">
         <option value="">--</option>
         <option value="BUS">Buss {{getTransportEmoji("BUS")}}</option>
         <option value="TRAM">Spårvagn {{getTransportEmoji("TRAM")}}</option>
