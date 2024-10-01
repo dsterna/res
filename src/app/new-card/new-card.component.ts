@@ -45,7 +45,8 @@ export class NewCardComponent implements OnInit {
 
   searchEntries(term: string) {
     return this.http.get<any[]>(
-      `/api/v1/typeahead.json?searchstring=${term}&stationsonly=true&maxresults=5&key=${environment.apiKey}`
+      // free key, use it as you please ;)
+      `/api/v1/typeahead.json?searchstring=${term}&stationsonly=true&maxresults=5&key=1e350bd8eb674967ae35564c14c2edf6`
     );
   }
 
