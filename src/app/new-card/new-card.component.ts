@@ -8,7 +8,6 @@ import {
   filter,
 } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { environment } from '../../enviroments/enviroment';
 import { Station } from '../models/models';
 import { SharedService } from '../shared.service';
 
