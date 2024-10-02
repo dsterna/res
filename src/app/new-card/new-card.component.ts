@@ -10,6 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { Station } from '../models/models';
 import { SharedService } from '../shared.service';
+import { environment } from '../../enviroments/enviroment';
 
 @Component({
   selector: 'app-new-card',
@@ -44,8 +45,7 @@ export class NewCardComponent implements OnInit {
 
   searchEntries(term: string) {
     return this.http.get<any[]>(
-      // free key, use it as you please ;)
-      `/api/v1/typeahead.json?searchstring=${term}&stationsonly=true&maxresults=5&key=1e350bd8eb674967ae35564c14c2edf6`
+      `https://cors-anywhere.herokuapp.com/https://journeyplanner.integration.sl.se/v1/typeahead.json?searchstring=${term}&stationsonly=true&maxresults=5&key=${environment.apiKey}`
     );
   }
 
