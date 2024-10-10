@@ -9,4 +9,8 @@ This Angular application uses the SL Stations and SL Departures APIs to provide 
 - View real-time departure details
 - Save favorite journeys by adding to home screen
 
+
+### Problems:
+- SL have a strict cors policy, cors proxy is needed
+
 Enjoy!
