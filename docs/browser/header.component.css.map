@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/header/header.component.scss"],
+  "sourcesContent": [".wrapper {\n    display: flex;\n    justify-content: center;\n}\na.inner {\n    text-decoration: none; /* Remove underline */\n    color: inherit; /* Inherit the color from the parent elements */\n    cursor: pointer; /* Show pointer on hover */\n  }\n\n.inner {\n    display: flex;\n    flex-direction: column;\n}\n\n.logo {\n    display: flex;\n    justify-content: center;\n    font-size: 4rem;\n    line-height: 1;\n}\n\n.logo-text {\n    text-align: center;\n}"],
+  "mappings": ";AAAA,CAAA;AACI,WAAA;AACA,mBAAA;;AAEJ,CAAA,CAAA;AACI,mBAAA;AACA,SAAA;AACA,UAAA;;AAGJ,CANA;AAOI,WAAA;AACA,kBAAA;;AAGJ,CAAA;AACI,WAAA;AACA,mBAAA;AACA,aAAA;AACA,eAAA;;AAGJ,CAAA;AACI,cAAA;;",
+  "names": []
+}
