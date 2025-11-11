@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/styles.scss"],
-  "sourcesContent": ["// General styles\n* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n\nbody {\n  font-family: Arial, sans-serif;\n  line-height: 1.6;\n  background-color: #f4f4f4;\n  color: #333;\n  padding: 4rem;\n}\n\n// Responsive styles\n@media (max-width: 600px) {\n  \n  body {\n    padding: 2rem;\n  }\n\n  h3 {\n    font-size: 1.2em;\n  }\n}\n\n"],
-  "mappings": ";AACA;AACE,cAAA;AACA,UAAA;AACA,WAAA;;AAGF;AACE,eAAA,KAAA,EAAA;AACA,eAAA;AACA,oBAAA;AACA,SAAA;AACA,WAAA;;AAIF,OAAA,CAAA,SAAA,EAAA;AAEE;AACE,aAAA;;AAGF;AACE,eAAA;;;",
-  "names": []
-}

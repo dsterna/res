@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/new-card/new-card.component.scss"],
-  "sourcesContent": ["// Search field styles\ninput[type=\"text\"] {\n  width: 100%;\n  padding: 10px;\n  margin-top: 5px;\n  border: 1px solid #d1d1d6;\n  border-radius: 5px;\n  font-size: 1em;\n  font-style: italic;\n\n  &::placeholder {\n    color: #a1a1a1; // Light gray\n  }\n}\n\nul {\n  list-style-type: none;\n  padding: 0;\n\n  li {\n    padding: 10px;\n    background: #ffffff;\n    border-bottom: 1px solid #d1d1d6;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n\n    &:nth-child(even) {\n      background: #f9f9f9; // Very light gray\n    }\n\n    button {\n      background: #007aff; // Apple blue\n      border: none;\n      color: white;\n      padding: 5px 10px;\n      border-radius: 5px;\n      cursor: pointer;\n\n      &:hover {\n        background: #005bb5; // Darker blue\n      }\n    }\n  }\n}\n\n.bold-label {\n  font-weight: bold;\n}"],
-  "mappings": ";AACA,KAAA,CAAA;AACE,SAAA;AACA,WAAA;AACA,cAAA;AACA,UAAA,IAAA,MAAA;AACA,iBAAA;AACA,aAAA;AACA,cAAA;;AAEA,KAAA,CAAA,UAAA;AACE,SAAA;;AAIJ;AACE,mBAAA;AACA,WAAA;;AAEA,GAAA;AACE,WAAA;AACA,cAAA;AACA,iBAAA,IAAA,MAAA;AACA,WAAA;AACA,mBAAA;AACA,eAAA;;AAEA,GAAA,EAAA;AACE,cAAA;;AAGF,GAAA,GAAA;AACE,cAAA;AACA,UAAA;AACA,SAAA;AACA,WAAA,IAAA;AACA,iBAAA;AACA,UAAA;;AAEA,GAAA,GAAA,MAAA;AACE,cAAA;;AAMR,CAAA;AACE,eAAA;;",
-  "names": []
-}
