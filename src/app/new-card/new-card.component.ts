@@ -1,16 +1,15 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
   switchMap,
   filter,
+  catchError,
 } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { Station } from '../models/models';
 import { SharedService } from '../shared.service';
-import { environment } from '../../enviroments/enviroment';
 
 @Component({
   selector: 'app-new-card',
@@ -23,6 +22,7 @@ export class NewCardComponent implements OnInit {
   private searchTerms = new Subject<string>();
   results: any[] = [];
   private service = inject(SharedService);
+  corsError: boolean = false; // Error flag
 
   constructor(private http: HttpClient) {}
 
@@ -34,7 +34,13 @@ export class NewCardComponent implements OnInit {
         filter((term) => term.trim().length > 0),
         switchMap((term) => this.searchEntries(term))
       )
-      .subscribe((results: any) => (this.results = results.ResponseData));
+      .subscribe({
+        next: (results: any) => {
+          this.results = results.locations
+            .sort((a: any, b: any) => b.matchQuality - a.matchQuality)
+            .slice(0, 5);
+        },
+      });
   }
 
   onSearch(event: any): void {
@@ -44,12 +50,25 @@ export class NewCardComponent implements OnInit {
   }
 
   searchEntries(term: string) {
-    return this.http.get<any[]>(
-      `https://cors-anywhere.herokuapp.com/https://journeyplanner.integration.sl.se/v1/typeahead.json?searchstring=${term}&stationsonly=true&maxresults=5&key=${environment.apiKey}`
+    return (
+      this.http
+        .get<any>(
+          `https://journeyplanner.integration.sl.se/v2/stop-finder?name_sf=${term}&any_obj_filter_sf=2&type_sf=any&gen_c=false`
+          // `https://journeyplanner.integration.sl.se/v1/typeahead.json?searchstring=${term}&stationsonly=true&maxresults=5&key=${environment.apiKey}`
+        )
+        // https://journeyplanner.integration.sl.se/v2/stop-finder?name_sf=odenplan&any_obj_filter_sf=2&type_sf=any
+        .pipe(
+          catchError((error) => {
+            console.log('arg');
+            this.corsError = true;
+            return of({ locations: [] }); // Return a consistent shape
+          })
+        )
     );
   }
 
   onAddStation(siteId: string, name: string) {
+    console.log('siteId', siteId);
     this.service.addStation({
       id: siteId,
       name,

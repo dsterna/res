@@ -21,12 +21,14 @@ export class SharedService {
   private async init() {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       // only run on mount
+
       if (this.stations.length === 0) {
         for (const id in queryParams) {
           if (queryParams.hasOwnProperty(id)) {
             const stationData = decodeURIComponent(queryParams[id]);
             try {
-              const { transportType, nameFilter, name } = JSON.parse(stationData);
+              const { transportType, nameFilter, name } =
+                JSON.parse(stationData);
               const station: Station = {
                 id,
                 selectedTransportType: transportType || '',
@@ -44,6 +46,7 @@ export class SharedService {
   }
 
   addStation(station: Station) {
+    console.log('addStation', station);
     if (!this.stations.some((s) => s.id === station.id)) {
       this.fetchStationData(station, true);
     }
@@ -98,7 +101,10 @@ export class SharedService {
   private async fetchStationData(station: Station, isNew: boolean) {
     try {
       const stationData: any = await lastValueFrom(
-        this.getData(this.convertSiteId(station.id), station.selectedTransportType)
+        this.getData(
+          this.convertSiteId(station.id),
+          station.selectedTransportType
+        )
       );
       const newStation = {
         ...station,
@@ -116,7 +122,7 @@ export class SharedService {
 
       // Apply name filter after fetching the data
       this.applyNameFilter(newStation);
-      this.updateQueryParams(); 
+      this.updateQueryParams();
     } catch (error) {
       console.error('Error fetching station data:', error);
     }
